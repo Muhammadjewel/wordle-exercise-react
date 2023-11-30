@@ -3,6 +3,8 @@ import React from "react";
 import { sample } from "../../utils";
 import { WORDS } from "../../data";
 import { NUM_OF_GUESSES_ALLOWED } from "../../constants";
+import { checkGuess } from "../../game-helpers";
+
 import GuessForm from "../GuessForm/index";
 import GuessResults from "../GuessResults/index";
 
@@ -20,7 +22,10 @@ function Game() {
       return;
     }
 
-    setGuesses([...guesses, { label: guess, id: crypto.randomUUID() }]);
+    setGuesses([
+      ...guesses,
+      { checkedGuess: checkGuess(guess, answer), id: crypto.randomUUID() },
+    ]);
     console.log(guesses);
   }
 
