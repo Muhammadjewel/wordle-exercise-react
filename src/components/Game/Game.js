@@ -14,13 +14,13 @@ console.info({ answer });
 function Game() {
   const [guesses, setGuesses] = React.useState([]);
 
-  function handleAddGuess(result) {
+  function handleAddGuess(guess) {
     if (guesses.length >= NUM_OF_GUESSES_ALLOWED) {
       window.alert(`Max of ${NUM_OF_GUESSES_ALLOWED} attempts`);
       return;
     }
 
-    setGuesses([...guesses, { label: result, id: crypto.randomUUID() }]);
+    setGuesses([...guesses, { label: guess, id: crypto.randomUUID() }]);
     console.log(guesses);
   }
 
