@@ -9,21 +9,22 @@ function GuessResults({ results }) {
   return (
     <div className="guess-results">
       {results.map(({ label, id }) => (
-        <p key={id} className="guess">
-          {label.split("").map((char) => (
-            <span className="cell">{char}</span>
+        <div key={id} className="guess">
+          {label.split("").map((char, index) => (
+            <div key={index} className="cell">
+              {char}
+            </div>
           ))}
-        </p>
+        </div>
       ))}
 
-      {remainingAttempts > 0 &&
-        range(remainingAttempts).map((attempt, index) => (
-          <p key={index} className="guess">
-            {range(5).map((char) => (
-              <span className="cell"></span>
-            ))}
-          </p>
-        ))}
+      {range(remainingAttempts).map((attempt, index) => (
+        <div key={index} className="guess">
+          {range(5).map((char, index) => (
+            <div key={index} className="cell"></div>
+          ))}
+        </div>
+      ))}
     </div>
   );
 }
