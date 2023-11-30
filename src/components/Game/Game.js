@@ -16,6 +16,7 @@ function Game() {
   function handleAddGuess(result) {
     if (results.length >= 6) {
       window.alert("Max of 6 attempts");
+      return;
     }
 
     setResults([...results, { label: result, id: crypto.randomUUID() }]);
