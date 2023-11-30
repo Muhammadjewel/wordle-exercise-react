@@ -2,6 +2,7 @@ import React from "react";
 
 import { sample } from "../../utils";
 import { WORDS } from "../../data";
+import { NUM_OF_GUESSES_ALLOWED } from "../../constants";
 import GuessForm from "../GuessForm/index";
 import GuessResults from "../GuessResults/index";
 
@@ -14,8 +15,8 @@ function Game() {
   const [results, setResults] = React.useState([]);
 
   function handleAddGuess(result) {
-    if (results.length >= 6) {
-      window.alert("Max of 6 attempts");
+    if (results.length >= NUM_OF_GUESSES_ALLOWED) {
+      window.alert(`Max of ${NUM_OF_GUESSES_ALLOWED} attempts`);
       return;
     }
 
