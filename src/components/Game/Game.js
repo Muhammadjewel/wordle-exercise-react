@@ -12,21 +12,21 @@ const answer = sample(WORDS);
 console.info({ answer });
 
 function Game() {
-  const [results, setResults] = React.useState([]);
+  const [guesses, setGuesses] = React.useState([]);
 
   function handleAddGuess(result) {
-    if (results.length >= NUM_OF_GUESSES_ALLOWED) {
+    if (guesses.length >= NUM_OF_GUESSES_ALLOWED) {
       window.alert(`Max of ${NUM_OF_GUESSES_ALLOWED} attempts`);
       return;
     }
 
-    setResults([...results, { label: result, id: crypto.randomUUID() }]);
-    console.log(results);
+    setGuesses([...guesses, { label: result, id: crypto.randomUUID() }]);
+    console.log(guesses);
   }
 
   return (
     <>
-      <GuessResults results={results} />
+      <GuessResults guesses={guesses} />
       <GuessForm handleAddGuess={handleAddGuess} />
     </>
   );
