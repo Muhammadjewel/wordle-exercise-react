@@ -7,6 +7,7 @@ import { checkGuess } from "../../game-helpers";
 
 import GuessForm from "../GuessForm/index";
 import GuessResults from "../GuessResults/index";
+import GameOverBanner from "../GameOverBanner/index";
 
 // Pick a random word on every pageload.
 const answer = sample(WORDS);
@@ -15,6 +16,10 @@ console.info({ answer });
 
 function Game() {
   const [guesses, setGuesses] = React.useState([]);
+  const [isGameOver, setIsGameOver] = React.useState({
+    status: false,
+    result: null,
+  });
 
   function handleAddGuess(guess) {
     if (guesses.length >= NUM_OF_GUESSES_ALLOWED) {
@@ -22,17 +27,35 @@ function Game() {
       return;
     }
 
+    if (guess === answer) {
+      setIsGameOver({ status: true, result: "win" });
+    }
+
+    if (guesses.length + 1 >= NUM_OF_GUESSES_ALLOWED && guess !== answer) {
+      setIsGameOver({ status: true, result: "lose" });
+    }
+
     setGuesses([
       ...guesses,
-      { checkedGuess: checkGuess(guess, answer), id: crypto.randomUUID() },
+      {
+        checkedGuess: checkGuess(guess, answer),
+        id: crypto.randomUUID(),
+      },
     ]);
-    console.log(guesses);
   }
 
   return (
     <>
       <GuessResults guesses={guesses} />
-      <GuessForm handleAddGuess={handleAddGuess} />
+      <GuessForm isGameOver={isGameOver} handleAddGuess={handleAddGuess} />
+
+      {isGameOver.status && (
+        <GameOverBanner
+          result={isGameOver.result}
+          attempts={guesses.length}
+          answer={answer}
+        />
+      )}
     </>
   );
 }

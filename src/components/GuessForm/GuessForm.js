@@ -1,6 +1,6 @@
 import React from "react";
 
-function GuessForm({ handleAddGuess }) {
+function GuessForm({ isGameOver, handleAddGuess }) {
   const [guess, setGuess] = React.useState("");
 
   function handleChange(event) {
@@ -26,6 +26,7 @@ function GuessForm({ handleAddGuess }) {
         type="text"
         value={guess}
         pattern="^.{5}$"
+        disabled={isGameOver.status}
         onChange={handleChange}
       />
     </form>
