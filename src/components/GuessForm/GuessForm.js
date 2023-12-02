@@ -10,7 +10,8 @@ function GuessForm({ isGameOver, handleAddGuess }) {
   function handleSubmit(event) {
     event.preventDefault();
 
-    if (guess.length < 5) {
+    if (guess.length !== 5) {
+      window.alert("The guess should be exactly 5 characters length");
       return;
     }
 
@@ -25,7 +26,11 @@ function GuessForm({ isGameOver, handleAddGuess }) {
         id="guess-input"
         type="text"
         value={guess}
-        pattern="^.{5}$"
+        required
+        minLength={5}
+        maxLength={5}
+        pattern="[a-zA-Z]{5}"
+        title="5 letter word"
         disabled={isGameOver.status}
         onChange={handleChange}
       />
