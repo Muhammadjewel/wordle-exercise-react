@@ -5,9 +5,9 @@ import { WORDS } from "../../data";
 import { NUM_OF_GUESSES_ALLOWED } from "../../constants";
 import { checkGuess } from "../../game-helpers";
 
-import GuessForm from "../GuessForm/index";
-import GuessResults from "../GuessResults/index";
-import GameOverBanner from "../GameOverBanner/index";
+import GuessForm from "../GuessForm";
+import GuessResults from "../GuessResults";
+import GameOverBanner from "../GameOverBanner";
 
 // Pick a random word on every pageload.
 const answer = sample(WORDS);
